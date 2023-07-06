@@ -1,2 +1,2 @@
 #!/bin/bash
-chown vincent:satff *
+chgrp -hR vincent satff *
