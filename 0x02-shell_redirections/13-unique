@@ -1,2 +1,2 @@
 #!/bin/bash
-fmt | uniqe -u
+fmt | uniq -u
