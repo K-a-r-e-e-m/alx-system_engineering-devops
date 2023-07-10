@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -empty | ls -la | cut -f 9
+find . -empty | ls -la | cut -f 8
