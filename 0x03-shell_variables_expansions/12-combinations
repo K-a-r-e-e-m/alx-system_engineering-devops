@@ -1,2 +1,2 @@
 #!/bin/bash
-echo {{a..z}{a..z}} | wc -l
+echo {{a..z}{a..z}} | wc -l |sort
