@@ -1,2 +1,2 @@
 #!/bin/bash
-echo $(($WATER+$SRIR))
+tr 'water' '01234'|tr 'stir.' '01234'|result=$(($((5#$WATER))+$((5#$STIR.))))|printf '%o' $result|tr '01234567' 'bestchol'
