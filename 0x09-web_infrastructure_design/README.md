@@ -7,7 +7,20 @@
 - [x] You must be able to explain system redundancy
 - [x] Know all the mentioned acronyms: LAMP, SPOF, QPS
 
-
+## Important concepts
+- Network basics
+- Server
+- Web server
+- DNS
+- Load balancer
+- Monitoring
+- Database
+- DNS record types
+- Single point of failure
+- How to avoid downtime when deploying new code
+- High availability cluster (active-active/active-passive)
+- HTTPS
+- Firewall
 
 **Task 0**
 ![Alt text](0-simple_web_stack.png)
