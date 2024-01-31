@@ -9,17 +9,18 @@
 
 
 
-***Task 0***
-![Alt text](<Add a heading (1).png>)
+**Task 0**
+![Alt text](0-simple_web_stack.png)
 ---
 
-***Task 1***
-![Alt text](<Load Balancer.png>)
+**Task 1**
+![Alt text](1-distributed_web_infrastructure.png)
 ---
 
-***Task 2***
-![Alt text](<Add a subheading.png>)
+**Task 2**
+![Alt text](2-secured_and_monitored_web_infrastructure.png)
 ---
 
-***Advanced***
-![Alt text](<2 Software Load Balancer HAproxy.png>)
+**Advanced**
+![Alt text](3-scale_up.png)
+---
