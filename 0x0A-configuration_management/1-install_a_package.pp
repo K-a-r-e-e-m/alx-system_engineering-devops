@@ -1,4 +1,4 @@
-#!/usr/bin/puppet
+#!/usr/bin/pup
 # We use shebang because script will be executed
 # This file install flask from pip3 with Puppet
 # With a specific version of flask
