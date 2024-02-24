@@ -2,8 +2,12 @@
 # This script displays Best School 10 times using until loop.
 
 i=0
-until [ $i -lt 10 ]
+until [ $i -ge 10 ]
 do
     echo "Best School"
     ((i++))
 done
+
+# The [condition] is a test or command that evaluates to true or false.
+# If it is false, the code block inside the loop is executed repeatedly
+# until the condition becomes true.
