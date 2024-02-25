@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# This script copy my public key to the server.
+cat ~/.ssh/school | ssh ubuntu@100.25.19.181 "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
