@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
-# This script copy my public key to the server.
-sudo nano /etc/ssh/sshd_config
+# This script uses ssh to connect to my server
+Host 100.25.19.181
+    IdentityFile ~/.ssh/school
+    BatchMode yes
