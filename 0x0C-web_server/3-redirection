@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# This script redirect to another page 301 permentely redirect.
+apt-get update
+apt-get install nginx -y
+
+echo "Hello World!" | tee /var/www/html/index.nginx-debian.html
+
+# The path of config file
+config_file="/etc/nginx/sites-enabled/default"
+
+# String to replace in config file
+new_string="server_name _;\n\n\tlocation \/redirect_me {\n\treturn 301 https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4;\n\t}"
+
+# Edit file in config file (replacement).
+sed -i "s/server_name _;/$new_string/" $config_file
+
+service nginx restart
