@@ -1,8 +1,19 @@
 #!/usr/bin/env bash
 # This script configures a new Ubuntu machine.
+
+# First Update our local package and then install Nginx web server
 sudo apt-get update -y
 sudo apt-get install nginx -y
 
+# Changes the ownership of directory to current user
+sudo chown -R "$USER":"$USER" /var/www/html
+# Give permission to owner in directory to read, write and excute
+sudo chmod -R 755 /var/www
+
+# Redirects the output of the command to the html file
+# Replace the content of the file with "Hello World!"
+# tee used to write to a file with sudo privilege
 echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
 
+# Restarts the Nginx service to save configuration changes
 sudo service nginx restart
