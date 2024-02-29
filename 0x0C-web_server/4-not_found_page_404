@@ -8,6 +8,13 @@ apt-get install nginx -y
 # The path of config file
 config_file="/etc/nginx/sites-enabled/default"
 
+echo "Hello World!" | tee /var/www/html/index.nginx-debian.html
+
+# String to replace in config file
+new_string="server_name _;\n\n\tlocation \/redirect_me {\n\treturn 301 https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4;\n\t}"
+
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/error_not_found.html
+
 # String to replace in config file
 string_custom="listen 80 default_server;\n\n\terror_page 404 \/error_not_found.html;\n\tlocation = \/error_not_found.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
 
