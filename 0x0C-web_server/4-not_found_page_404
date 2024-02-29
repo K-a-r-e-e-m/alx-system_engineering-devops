@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# This script customs 404 page that contains the string Ceci n'est pas une page.
+
+
+apt-get update
+apt-get install nginx -y
+
+# The path of config file
+config_file="/etc/nginx/sites-enabled/default"
+
+# String to replace in config file
+string_custom="listen 80 default_server;\n\n\terror_page 404 \/error_not_found.html;\n\tlocation = \/error_not_found.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+
+# Add the new_string after search_for statement in config file
+sed -i "s/listen 80 default_server;/$string_custom/" $config_file
+
+service nginx restart
