@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# This script displays numbers from 1 to 20 with some requirements.
+
+for i in {1..20}; do
+    case $i in
+        4)  echo -e "$i\n""bad luck from China" ;;
+        9)  echo -e "$i\n""bad luck from Japan" ;;
+        17) echo -e "$i\n""bad luck from Italy" ;;
+        *)  echo $i ;;
+    esac
+done
+
+# You can use echo without -e
+# but it enables the interpretation of backslash escapes, and \n 
+# we can use echo like this --> echo 'hello' 'my name' 'is kareem'
+# === hello my name is kareem
