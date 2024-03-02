@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script show all atached ip addresses.
+# awk 'pattern { action }' --> print second arg
+
+ifconfig -a | grep "inet " | awk '{print $2}'
