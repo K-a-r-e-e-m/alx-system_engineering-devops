@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# This script config hosts file.
+
+#Assign variables
+localhost='127.0.0.2\tlocalhost'
+facebook='8.8.8.8\t\tfacebook.com'
+
+cp /etc/hosts ~/myhosts.new
+
+# Replace line that start with 127
+sed -i "s/^127.*$/'$localhost'\'n$facebook'/" ~/hosts.new
+
+cp -f ~/hosts.new /etc/myhosts.new
