@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# This script displays the time for 12 hours and 59 minutes.
+
+i=0
+while [ $i -le 20 ]; do
+    echo "Hour $((i++)):"
+    j=0
+        while [ $j -lt 60 ]; do
+            echo $((j++))
+        done
+done
