@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# This script tell us what is pid of this script
+# This script tell us what is pid of current process.
 
-pgrep bash
+pgrep bash # or echo $$
