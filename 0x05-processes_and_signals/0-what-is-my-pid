@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script tell us what is pid of this script
+
+ps | grep bash | cut -d ' ' -f 2
