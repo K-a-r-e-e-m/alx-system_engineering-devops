@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script shows all processes, for all users.
+
+ps axu
