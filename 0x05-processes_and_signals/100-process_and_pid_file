@@ -5,9 +5,12 @@ echo $$ > /var/run/myscript.pid
 
 while true
 do    
-    trap "echo I hate the kill command" SIGTERM 
-    trap "echo Y U no love me?!" SIGINT
-    trap "rm /var/run/myscript.pid" SIGQUIT SIGTERM 
+    trap "echo I hate the kill command &&
+              rm /var/run/myscript.pid &&
+                         exit" SIGTERM
+
+    trap "echo Y U no love me?! && exit" SIGINT
+    trap "rm /var/run/myscript.pid && exit" SIGQUIT
 
     echo 'To infinity and beyond'
     sleep 2
