@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# This script manages manage_my_process file.
+
+if [ "$1" == "start" ]; then
+    ./manage_my_process & # Run in background
+    echo $! > /var/run/my_process.pid # `$!` pid for the current process in backgroud
+    echo 'manage_my_process started'
+
+elif [  "$1" == "stop" ]; then
+    kill "$(cat /var/run/my_process.pid)" # Kill with pid that exists in this file
+    rm /var/run/my_process.pid
+    echo 'manage_my_process stopped'
+
+elif [  "$1" == "restart" ]; then
+    kill "$(cat /var/run/my_process.pid)" # Kill with pid that exists in this file
+    rm /var/run/my_process.pid
+    ./manage_my_process & # Run process in background
+    echo $! > /var/run/my_process.pid # `$!` pid for the current process in backgroud
+    echo 'manage_my_process restarted'
+
+else
+    echo "Usage: manage_my_process {start|stop|restart}"
+
+fi
