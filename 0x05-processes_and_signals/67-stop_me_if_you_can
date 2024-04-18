@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# This script kill the process from the prevoius task.
+
+pkill -f 7-highlander
+
+# pkill will send the specified signal (by default SIGTERM)
