@@ -21,6 +21,12 @@ backend KareemBack
 
 echo "$config_append" | tee -a "$config_file"
 
-# Make sure that HAproxy can be managed via an init script
+# HAProxy will start at boot. 
+# Make sure that HAproxy can be managed via an init script.
+# Since we want the service to start automatically each time the server powers on
+init_file='/etc/default/haproxy'
+
+echo "ENABLED=1" | tee -a $init_file
+
 
 sudo systemctl restart haproxy
