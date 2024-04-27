@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Configure and install a new load balancer on server.
+
+# First install load balancer HAproxy
+apt-get install --no-install-recommends software-properties-common -y
+add-apt-repository ppa:vbernat/haproxy-2.8 -y
+apt-get install haproxy=2.8.\* -y
+
+# Configure HAproxy so that it send traffic to web-01 and web-02
+config_file='/etc/haproxy/haproxy.cfg'
+
+config_append="
+frontend KareemFront
+    bind *:80
+    default_backend KareemBack
+
+backend KareemBack
+    server 438055-web-01 18.207.142.229:80
+    server 438055-web-02 54.90.27.197:80
+"
+
+echo "$config_append" | tee -a "$config_file"
+
+# Make sure that HAproxy can be managed via an init script
+
+sudo systemctl restart haproxy
