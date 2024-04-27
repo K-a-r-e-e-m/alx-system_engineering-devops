@@ -1,28 +1,33 @@
 #!/usr/bin/env bash
-# Create a script to install and configure HAProxy on lb-01 server
-# Configure HAProxy to send traffic to web-01 and web-02 servers
-# Distribute requests using a roundrobin algorithm
-# Make sure that HAProxy can be managed via an init script
-# Install and configure HAproxy on my lb-01 server.
-sudo apt-get -y update
-apt-get -y install haproxy
+# Configure and install a new load balancer on server.
 
-# edit config file
-server_config=\
-"
-frontend  ehoneah-frontend
+# First install load balancer HAproxy
+apt-get update -y
+apt-get install --no-install-recommends software-properties-common -y
+add-apt-repository ppa:vbernat/haproxy-2.8 -y
+apt-get install haproxy=2.8.\* -y
+
+# Configure HAproxy so that it send traffic to web-01 and web-02
+config_file='/etc/haproxy/haproxy.cfg'
+
+config_append="
+frontend myfrontend
         bind *:80
-        mode http
-        default_backend ehoneah-backend
-backend ehoneah-backend
+        default_backend webservers
+
+backend webservers
         balance roundrobin
-        server 63210-web-01 100.25.19.204:80 check
-        server 63210-web-02 54.157.159.85:80 check
+        server 438055-web-01 18.207.142.229:80 check
+        server 438055-web-02 54.90.27.197:80 check
 "
-echo "$server_config" | sudo tee -a /etc/haproxy/haproxy.cfg
 
-# enable haproxy to be started by init script
+echo "$config_append" | tee -a "$config_file"
 
-echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
+# HAProxy will start at boot. 
+# Make sure that HAproxy can be managed via an init script.
+# Since we want the service to start automatically each time the server powers on
+init_file='/etc/default/haproxy'
 
-sudo service haproxy restart
+echo "ENABLED=1" | tee -a "$init_file"
+
+systemctl restart haproxy
