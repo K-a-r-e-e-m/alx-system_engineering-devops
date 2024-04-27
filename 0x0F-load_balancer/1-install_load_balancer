@@ -27,7 +27,7 @@ echo "$config_append" | tee -a "$config_file"
 # Since we want the service to start automatically each time the server powers on
 init_file='/etc/default/haproxy'
 
-echo "ENABLED=1" | tee -a $init_file
+echo "ENABLED=1" | tee -a "$init_file"
 
 
 sudo systemctl restart haproxy
