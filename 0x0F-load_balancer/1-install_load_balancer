@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
-# Configure and install a new load balancer on server.
-
-# First install load balancer HAproxy
-apt-get update -y
+# setup loadbalancer with HAProxy
+apt-get update
 apt-get install haproxy -y
-
-# Configure HAproxy so that it send traffic to web-01 and web-02
-
+echo "ENABLED=1" >> /etc/default/haproxy
 echo -e "
 frontend load_balancer
         bind :80
@@ -17,10 +13,4 @@ backend web_servers
         server 438055-web-01 18.207.142.229:80
         server 438055-web-02 54.90.27.197:80" >> /etc/haproxy/haproxy.cfg
 
-
-# HAProxy will start at boot. 
-# Make sure that HAproxy can be managed via an init script.
-# Since we want the service to start automatically each time the server powers on
-echo "ENABLED=1" >> /etc/default/haproxy
-
-systemctl restart haproxy
+service haproxy start
