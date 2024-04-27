@@ -2,9 +2,8 @@
 # Configure and install a new load balancer on server.
 
 # First install load balancer HAproxy
-apt-get update
-apt-get upgrade -y
-apt-get install haproxy -y
+sudo apt-get -y update
+apt-get -y install haproxy
 
 # Configure HAproxy so that it send traffic to web-01 and web-02
 config_file='/etc/haproxy/haproxy.cfg'
