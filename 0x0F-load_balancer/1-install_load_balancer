@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
-# setup loadbalancer with HAProxy
+# Configure and install a new load balancer on server.
+
+# First install load balancer HAproxy
 apt-get update
 apt-get install haproxy -y
 
+
+# Configure HAproxy so that it send traffic to web-01 and web-02
 echo "
 frontend myfrontend
-        bind :80
+        bind *:80
         default_backend webservers
 
 backend webservers
@@ -13,6 +17,7 @@ backend webservers
         server 438055-web-01 18.207.142.229:80
         server 438055-web-02 54.90.27.197:80" >> /etc/haproxy/haproxy.cfg
 
+# Make sure that HAproxy can be managed via an init script.
 echo "ENABLED=1" >> /etc/default/haproxy
 
 service haproxy start
