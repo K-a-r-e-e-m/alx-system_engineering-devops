@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # setup loadbalancer with HAProxy
 apt-get update
-apt-get upgrade -y
 apt-get install haproxy -y
 echo "ENABLED=1" >> /etc/default/haproxy
 echo -e "
@@ -11,7 +10,7 @@ frontend load_balancer
 
 backend web_servers
 	balance roundrobin
-	server web-01 18.207.142.229:80
-	server web-02 54.90.27.197:80" >> /etc/haproxy/haproxy.cfg
+    server 438055-web-01 18.207.142.229:80
+    server 438055-web-02 54.90.27.197:80" >> /etc/haproxy/haproxy.cfg
 
 service haproxy start
