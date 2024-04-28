@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 # Make nginx server listen to port 80 of all the server’s active IPv4 IPs
+apt update
 apt install nginx
+apt install curl
+curl 0:80
 service nginx start
