@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # This script uses SSH client configuration
-Host 18.207.142.229
+Host 54.89.109.180
     # Specifies a file from which the user's identity key is read
     # when using public xkey authentication
     IdentityFile ~/.ssh/school
     # Disable the password and passphrase
-    BatchMode yes 
+    PasswordAuthentication no 
