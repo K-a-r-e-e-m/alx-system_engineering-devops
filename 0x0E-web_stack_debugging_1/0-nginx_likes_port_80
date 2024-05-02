@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Debugging problem of nginx can't listen to port 80.
 
-apt update
-apt install nginx -y
-service nginx start
+# ln -s /<path to file be linked 'source'> <path of the link to be created 'symlink'>
+rm -r /etc/nginx/sites-enabled # Remove the source config file that enable
+ln -s /etc/nginx/sites-available /etc/nginx/sites-enabled
+service nginx restart
+# Make site avaliable that listen to port 80 default like to symlink file site enabled
