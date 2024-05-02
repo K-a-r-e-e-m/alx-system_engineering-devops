@@ -1,12 +1,7 @@
 #!/usr/bin/env bash
 # Output: The subdomain [SUB_DOMAIN] is a [RECORD_TYPE] record and points to [DESTINATION]
 
-
 func () {
-    # dig Domain and match pattern /ANS.../ then skip Matched line with getline
-    # getline read the next input, skip matched /ANS.../ line and match next line
-    recordtyp=$(dig "$2.$1" | awk '/ANSWER SECTION:/{getline; print $4}')
-    ipaddress=$(dig "$2.$1" | awk '/ANSWER SECTION:/{getline; print $5}')
     if [ -z "$2" ]; # -z True if length of string "$2" is zero
     then
         echo "The subdomain www is a A record and points to 54.237.112.154"
@@ -14,6 +9,10 @@ func () {
         echo "The subdomain web-01 is a A record and points to 54.89.109.180"
         echo "The subdomain web-02 is a A record and points to 100.25.171.150"
     else
+        # dig Domain and match pattern /ANS.../ then skip Matched line with getline
+        # getline read the next input, skip matched /ANS.../ line and match next line
+        recordtyp=$(dig "$2.$1" | awk '/ANSWER SECTION:/{getline; print $4}')
+        ipaddress=$(dig "$2.$1" | awk '/ANSWER SECTION:/{getline; print $5}')
         echo "The subdomain $2 is a $recordtyp record and points to $ipaddress"
     fi
 }
