@@ -38,11 +38,10 @@ defaults
 frontend myfrontend
         bind *:80
         bind *:443 ssl crt /etc/haproxy/certs/www.kareembyte.tech.pem
-        redirect scheme https if !{ ssl_fc }
+        redirect scheme https code 301 if !{ ssl_fc }
         default_backend webservers
 
 backend webservers
         balance roundrobin
         server 438055-web-01 54.89.109.180:80
         server 438055-web-02 100.25.171.150:80
-
