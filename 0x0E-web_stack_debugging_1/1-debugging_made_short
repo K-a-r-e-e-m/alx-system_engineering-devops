@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Debugging problem of nginx can't listen to port 80.
+
+# Replace all ports 8080 with port 80 
+# -i for edit in place, s for string and g for golbal (all match)
+sed -i "s/8080/80/g" /etc/nginx/sites-enabled/default
+service nginx restart
