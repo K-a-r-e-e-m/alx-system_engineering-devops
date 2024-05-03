@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Configure and install a new load balancer on server.
 
+
 # First install load balancer HAproxy
 apt-get update
 apt-get install haproxy -y
