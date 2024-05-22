@@ -21,7 +21,7 @@ if __name__ == '__main__':
             totalTasks += 1
             if task.get('completed'):
                 doneTasks += 1
-                taskTitle.append('\t' + task.get('title'))
-
+                taskTitle.append(task.get('title'))
+    
     print(f'Employee {name} is done with tasks({doneTasks}/{totalTasks}):')
-    [print(line) for line in taskTitle]
+    [print('\t', line) for line in taskTitle]
