@@ -9,29 +9,34 @@ from sys import argv
 
 if __name__ == '__main__':
 
-    users = get('https://jsonplaceholder.typicode.com/users/').json()
-    for idForUser in users:
+    # URL of API that have users having tasks in todolist.
+    api_url = 'https://jsonplaceholder.typicode.com'
 
-        user_id = idForUser.get('id')
-        url = 'https://jsonplaceholder.typicode.com/todos'
+    users = get(f'{api_url}/users/').json()  # GET request from API.
 
-        todoList = get(f'{url}?userId={user_id}')
-        # or get(f'{url}', params={"userId": user_id})
+    data = {}  # Dictionary of data to dump in json file.
+    for user in users:
 
-        user = get(f'https://jsonplaceholder.typicode.com/users/{user_id}')
+        user_id = user.get('id')
+        user_name = user.get('username')
 
-        userName = user.json().get('username')
+        # GET request from API for all tasks to specific user.
+        todoList = get(f'{api_url}/todos/?userId={user_id}').json()
 
-        # Data of USER_ID that we need to store it in josn file
-        data = {
-            user_id: [{
-                    "task": task.get('title'),
-                    "completed": task.get('completed'),
-                    "username": userName
-                    } for task in todoList.json()]
-        }
-        # loop only in json data without loop in user_id each time
+        data[user_id] = []  # Another dictionary of all tasks of the user.
 
-        # Dump data to json file "USER_ID.json"
-        with open('todo_all_employees.json', 'a') as file:
-            dump(data, file)
+        for task in todoList:
+
+            data[user_id].append({
+                "username": user_name,
+                "task": task.get('title'),
+                "completed": task.get('completed')
+            })
+            # { "1": [
+            #           {"username": , "task": , "completed"}, {...}, {...} ...
+            #
+            #        ], "2": [...
+            # }
+
+    with open('todo_all_employees.json', 'w') as file:
+        dump(data, file)
