@@ -15,7 +15,7 @@ if __name__ == '__main__':
     todoList = get(f'{url}?userId={user_id}')
     # or get(f'{url}', params={"userId": user_id})
 
-    user = get(f'https://jsonplaceholder.typicode.com/users/{userId}')
+    user = get(f'https://jsonplaceholder.typicode.com/users/{user_id}')
 
     userName = user.json().get('username')
 
