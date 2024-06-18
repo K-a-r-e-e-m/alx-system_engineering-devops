@@ -14,16 +14,12 @@ if __name__ == '__main__':
     user = get(f'https://jsonplaceholder.typicode.com/users/{userId}')
 
     userName = user.json().get('username')
-    completed = 'False'
     title = ''
 
     for task in todoList.json():
         if task.get('userId') == userId:
             title = task.get('title')
-
-            if task.get('completed'):
-                completed = 'True'
-
+            completed = task.get('completed')
             with open(f'{userId}.csv', 'a') as csvFile:
                 myfile = writer(csvFile, delimiter=',', quoting=QUOTE_ALL)
                 myfile.writerow([userId, userName, completed, title])
