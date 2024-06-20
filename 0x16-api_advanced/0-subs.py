@@ -10,8 +10,8 @@ def number_of_subscribers(subreddit):
     """Return number of subscribers including not active users
     or zero at not valid subreddit"""
 
-    url = "https://www.reddit.com/" + 'r/' + subreddit + '/about.json'
-    myHeaders = {'User-Agent': 'Google Chrome Version 81.0.4044.129'}
+    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    myHeaders = {'User-Agent': 'script by u/KareeeemHany'}
     res = get(url , headers=myHeaders)
 
     if res.status_code == 200:
