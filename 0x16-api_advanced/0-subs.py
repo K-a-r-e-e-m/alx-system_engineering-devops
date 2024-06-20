@@ -10,14 +10,11 @@ def number_of_subscribers(subreddit):
     """Return number of subscribers including not active users
     or zero at not valid subreddit"""
 
-    if subreddit is None or not isinstance(subreddit, str):
-        return 0
+    url = "https://www.reddit.com/" + 'r/' + subreddit + '/about.json'
+    myHeaders = {'User-Agent': 'Google Chrome Version 81.0.4044.129'}
+    res = get(url , headers=myHeaders)
 
-    url = "https://www.reddit.com/"
-    myHeaders = {'User-Agent': 'script by u/KareeeemHany'}
-    res = get(url + 'r/' + subreddit + '/about.json', headers=myHeaders)
-
-    try:
+    if res.status_code == 200:
         return res.json().get('data').get('subscribers')
-    except Exception:
+    else:
         return 0
