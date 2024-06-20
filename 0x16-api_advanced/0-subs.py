@@ -11,8 +11,8 @@ def number_of_subscribers(subreddit):
     or zero at not valid subreddit"""
 
     url = "https://www.reddit.com/"
-    myHeaders = {'User-agent': 'script by u/KareeeemHany'}
-    res = get(url + 'r/' + subreddit + '/about.json', headers=myHeaders, allow_redirects=False)
+    myHeaders = {'User-Agent': 'Mozilla/5.0'}
+    res = get(url + 'r/' + subreddit + '/about.json', headers=myHeaders)
 
     if res.status_code == 200:
         return res.json().get('data').get('subscribers')
