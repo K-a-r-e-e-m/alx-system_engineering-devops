@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# -i for edit in place, s for string and g for golbal (all match)
-sed -i "s/8080/80/g" /etc/nginx/sites-enabled/default # Replace all to 80
-service nginx restart
-kill -SIGTERM "$(pgrep nginx | head -1)" # Send <SIGTERM=15 Default> for least process
