@@ -15,8 +15,8 @@ frontend myfrontend
 
 backend webservers
         balance roundrobin
-        server 438055-web-01 54.89.109.180:80
-        server 438055-web-02 100.25.171.150:80" >> /etc/haproxy/haproxy.cfg
+        server 438055-web-01 100.26.246.92:80
+        server 438055-web-02 54.237.124.240:80" >> /etc/haproxy/haproxy.cfg
 
 # Make sure that HAproxy can be managed via an init script.
 echo "ENABLED=1" >> /etc/default/haproxy
